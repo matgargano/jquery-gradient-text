@@ -1,117 +1,128 @@
-;(function ($, window, document, undefined) {
-
-    "use strict";
-
-    var pluginName = "gradientText",
+(function ($, window, document, undefined) {
+    'use strict';
+    var pluginName = 'gradientText',
         defaults = {
             hexMode: true,
             range: null,
             degrees: '330',
             percentages: false,
-
+            percentagesArray: false
         };
 
-    // The actual plugin constructor
     function Plugin(element, options) {
-        this.element = element;
 
-        this.settings = $.extend({}, defaults, options);
+        this.element = element;
         this._defaults = defaults;
+        this.settings = $.extend({}, defaults, options);
         this._name = pluginName;
+
         this.init();
     }
 
     // Avoid Plugin.prototype conflicts
     $.extend(Plugin.prototype, {
-        init: function () {
 
+        processSettings: function () {
+            if (this.settings.percentages) {
+                this.settings.percentagesArray = this.settings.percentages.split(',');
+            }
+        },
 
-            this.execute();
+        preCheck: function () {
+
+            var required = [
+
+                'degrees',
+                'range'
+
+            ],
+                moveOn = true;
+            required.forEach(function(required){
+                if(!this.settings[required]) {
+                    moveOn = false;
+                }
+            }.bind(this));
+
+            return moveOn;
 
         },
-        setSettings: function () {
-            if ($(this.element).attr('data-range')) {
-                this.settings.range = $(this.element).attr('data-range');
-
+        init: function () {
+            this.extractSettingsFromDataAttributes();
+            if ( this.preCheck() ) {
+                this.execute();
             }
 
-            if ($(this.element).attr('data-degrees')) {
-                this.settings.degrees = $(this.element).attr('data-degrees');
-            }
+        },
+        extractSettingsFromDataAttributes: function () {
 
-            if ($(this.element).attr('data-percentages')) {
-                this.settings.percentages = $(this.element).attr('data-percentages');
+            if ($(this.element).attr('data-gradient-text-range')) {
+                this.settings.range = $(this.element).attr('data-gradient-text-range');
             }
-
+            if ($(this.element).attr('data-gradient-text-degrees')) {
+                this.settings.degrees = $(this.element).attr('data-gradient-text-degrees');
+            }
+            if ($(this.element).attr('data-gradient-text-percentages')) {
+                this.settings.percentages = $(this.element).attr('data-gradient-text-percentages');
+                this.settings.percentagesArray = this.settings.percentages.split(',');
+            }
             this.settings.degrees = this.settings.degrees.toString().replace('deg', '');
         },
-
         setUpData: function () {
 
-            this.settings.range = this.settings.range.split(",");
+            this.settings.range = this.settings.range.split(',');
             this.settings.rangeString = this.settings.degrees + 'deg,';
             this.settings.rangeCount = this.settings.range.length;
 
-            if (!this.settings.percentages) {
-                this.settings.interval = parseInt(100 / (this.settings.rangeCount - 1), 10);
-                this.settings.percentages = [];
+
+            this.settings.interval = parseInt(100 / (this.settings.rangeCount - 1), 10);
+
+            if (!Array.isArray(this.settings.percentagesArray)) {
+                this.settings.percentagesArray = [];
                 this.settings.range.forEach(function (item, iteration) {
-                    this.settings.percentages.push(iteration * this.settings.interval);
+                    this.settings.percentagesArray.push(iteration * this.settings.interval);
                 }.bind(this));
-            } else {
-
-                this.settings.percentages = this.settings.percentages.split(",");
-
             }
 
-            this.settings.percentageCount = this.settings.percentages.length;
-
-
+            this.settings.percentageCount = this.settings.percentagesArray.length;
         },
         checkIfWeCanRock: function () {
-
             if (this.settings.percentageCount !== this.settings.rangeCount) {
                 throw 'You must include ' + this.settings.rangeCount + ' percentages, you have included ' + this.settings.percentageCount;
             }
-
-
         },
         execute: function () {
-            this.setSettings();
+
+
             this.setUpData();
             this.checkIfWeCanRock();
-
             this.settings.range.forEach(function (item, iteration) {
                 var lastIteration = false;
                 if (iteration + 1 === this.settings.rangeCount) {
                     lastIteration = true;
                 }
-
-                if (this.settings.hexMode && item.charAt(0) !== "#") {
-                    item = "#" + item;
+                if (this.settings.hexMode && item.charAt(0) !== '#') {
+                    item = '#' + item;
                 }
-
-                this.settings.rangeString += item + " " + this.settings.percentages[iteration] + "%";
+                this.settings.rangeString += item + ' ' + this.settings.percentagesArray[iteration] + '%';
                 if (!lastIteration) {
-                    this.settings.rangeString += ",";
+                    this.settings.rangeString += ',';
                 }
             }.bind(this));
-            this.settings.rangeString = "linear-gradient(" + this.settings.rangeString + ")";
-            $(this.element).css("background", this.settings.rangeString);
-            $(this.element).css("-webkit-background-clip", 'text');
-            $(this.element).css("-webkit-text-fill-color", 'transparent');
-
+            this.settings.rangeString = 'linear-gradient(' + this.settings.rangeString + ')';
+            $(this.element).css('background', this.settings.rangeString);
+            $(this.element).css('-webkit-background-clip', 'text');
+            $(this.element).css('-webkit-text-fill-color', 'transparent');
         }
     });
-
-
     $.fn[pluginName] = function (options) {
         return this.each(function () {
-            if (!$.data(this, "plugin_" + pluginName)) {
-                $.data(this, "plugin_" +
-                    pluginName, new Plugin(this, options));
+            if (!$.data(this, 'plugin_' + pluginName)) {
+
+                $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
             }
         });
     };
-
-})(jQuery, window, document);
+    jQuery(document).ready(function ($) {
+        $('.gradient-text').gradientText();
+    });
+}(jQuery, window, document));

@@ -4,22 +4,20 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="../src/jquery.boilerplate.js"></script>
+	<script src="../src/jquery.gradient.text.js"></script>
 </head>
 <body>
+<h2>Check out this OTHER text it is <span class="gradient-text" data-gradient-text-degrees="100" data-gradient-text-range="#e05252,#99e052,#52e0e0,#9952e0,e05252"> even cooler</span>
+</h2>
 
-<h2 class="title-font heavy uppercase">At statenweb we engineer <span class="abc">creative</span> solutions to
-	your problems</h2>
+
+<h2>Check out this text it is <span class="gradient-text"> even cooler</span>
+
+	<h2>Check out this OTHER text it is <span class="gradient-text" data-gradient-text-degrees="100" data-gradient-text-range="#000,#fff,#52e0e0,#9952e0,e05252"> even cooler</span>
+	</h2>
 
 <script>
-    jQuery(document).ready(function ($) {
-        $('.abc').gradientText({
-            range: '#e05252,#000000',
-            percentages: '25,100',
 
-
-        });
-    });
 </script>
 
 </body>
