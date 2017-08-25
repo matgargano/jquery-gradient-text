@@ -1,0 +1,25 @@
+{
+  "name": "jquery-gradient-text",
+  "license": "MIT",
+  "authors": [
+    "Mat Gargano <mgargano@gmail.com>"
+  ],
+  "description": "Easily gradientify your text",
+  "homepage": "https://github.com/matgargano/jquery-gradient-text",
+  "keywords": [
+    "jquery-plugin",
+    "jquery",
+    "gradient",
+    "gradient text",
+    "plugins"
+  ],
+  "main": "src/jquery.gradient.text.js",
+  "dependencies": {
+    "jquery": "1"
+  },
+  "ignore": [
+    "npm-debug.log",
+    "bower_components",
+    "node_modules"
+  ]
+}
