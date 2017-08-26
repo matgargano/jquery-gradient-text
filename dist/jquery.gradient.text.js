@@ -1,3 +1,11 @@
+/*
+ *  gradient-text - v0.0.2
+ *  Easily gradientify your text
+ *  http://statenweb.com
+ *
+ *  Made by Mat Gargano
+ *  Under MIT License
+ */
 (function ($, window, document, undefined) {
     "use strict";
     var pluginName = "gradientText",
