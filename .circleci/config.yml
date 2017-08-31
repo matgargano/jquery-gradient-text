@@ -24,7 +24,6 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            sudo gem install json -v '1.8.3'
             cd docs-src
             bundle install --jobs=4 --retry=3 --path vendor/bundle
             bundle exec jekyll build
