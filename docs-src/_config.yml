@@ -31,3 +31,4 @@ plugins:
   - jekyll-feed
 
 destination: ../docs
+baseurl: /jquery-gradient-text
