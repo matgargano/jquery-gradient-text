@@ -28,7 +28,7 @@ jobs:
             bundle install --jobs=4 --retry=3 --path vendor/bundle
             bundle exec jekyll build
             cd ../
-            REPO="$(it config --get remote.origin.url)"
+            REPO="$(git config --get remote.origin.url)"
             rm -rf .git
             cd docs/
             ls -lsa
