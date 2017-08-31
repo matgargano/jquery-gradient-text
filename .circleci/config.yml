@@ -44,7 +44,7 @@ jobs:
 
       - save_cache:
           paths:
-            - ./venv
+            - ./docs-src
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # run tests!
