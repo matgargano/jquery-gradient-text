@@ -24,8 +24,8 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
             cd docs-src
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
             bundle exec jekyll build
             cd ../docs
             ls -lsa
