@@ -61,5 +61,5 @@ jobs:
           destination: test-results
 general:
   branches:
-    ignore:
-      - gh-pages # list of branches to ignore
+    only:
+     - master
