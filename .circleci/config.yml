@@ -45,7 +45,7 @@ jobs:
       - save_cache:
           paths:
             - ./docs-src
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1-dependencies-{{ checksum "./docs-src/Gemfile.lock" }}
 
       # run tests!
       - run:
