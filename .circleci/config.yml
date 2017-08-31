@@ -27,8 +27,17 @@ jobs:
             cd docs-src
             bundle install --jobs=4 --retry=3 --path vendor/bundle
             bundle exec jekyll build
-            cd ../docs
+            cd ../
+            REPO="$(it config --get remote.origin.url)"
+            rm -rf .git
+            cd docs/
             ls -lsa
+            git init
+            git add .
+            git commit -am "initial commit"
+            git remote add origin $REPO
+            ./../docs-src/bin/add-branch-if-needed
+            git push origin -f gh-pages
 
       - save_cache:
           paths:
