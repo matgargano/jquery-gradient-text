@@ -36,7 +36,7 @@ jobs:
             git config --global user.name "Mat Gargano"
             git init
             git add .
-            git commit -am "initial commit"
+            git commit -am "[ci skip] update documentation"
             git remote add origin $REPO
             pwd
             ./../docs-src/bin/add-branch-if-needed.sh
