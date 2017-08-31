@@ -32,6 +32,8 @@ jobs:
             rm -rf .git
             cd docs/
             ls -lsa
+            git config --global user.email "mgargano@gmail.com"
+            git config --global user.name "Mat Gargano"
             git init
             git add .
             git commit -am "initial commit"
