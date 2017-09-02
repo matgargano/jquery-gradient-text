@@ -24,6 +24,7 @@
   "homepage": "http://statenweb.com",
   "license": "MIT",
   "dependencies": {
+    "grunt-shell": "^2.1.0",
     "jquery": ">=1.5.1"
   },
   "devDependencies": {
