@@ -1,4 +1,5 @@
 name: jQuery Gradient Text Site
 markdown: kramdown
 exclude: ['.sass-cache', 'node_modules', 'sass', 'Gruntfile.js', 'README.md', 'bower.json', 'package.json', 'js/plugins', 'vendor']
+destination: ../docs
 
