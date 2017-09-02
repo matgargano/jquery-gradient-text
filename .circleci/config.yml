@@ -31,7 +31,8 @@ jobs:
             REPO="$(git config --get remote.origin.url)"
             rm -rf .git
             ls -lsa
-            rm ./docs-src/.gitignore
+            npm install
+            grunt
             cd docs/
             ls -lsa
             git config --global user.email "mgargano@gmail.com"
