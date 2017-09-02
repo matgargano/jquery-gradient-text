@@ -30,6 +30,7 @@ jobs:
             cd ../
             REPO="$(git config --get remote.origin.url)"
             rm -rf .git
+            ls -lsa
             cd docs/
             ls -lsa
             git config --global user.email "mgargano@gmail.com"
