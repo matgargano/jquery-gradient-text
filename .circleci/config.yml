@@ -40,8 +40,9 @@ jobs:
             git add .
             git commit -am "[ci skip] update documentation"
             git remote add origin $REPO
-            pwd
             ./../docs-src/bin/add-branch-if-needed.sh
+            pwd
+            ls -lsa
             git push origin -f gh-pages
 
       - save_cache:
