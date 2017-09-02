@@ -45,6 +45,7 @@
   },
   "scripts": {
     "jscs": "jscs src",
-    "test": "npm run jscs && grunt travis --verbose"
+    "test": "npm run jscs && grunt travis --verbose",
+    "build-jekyll": "./node_modules/grunt/lib/grunt.js"
   }
 }

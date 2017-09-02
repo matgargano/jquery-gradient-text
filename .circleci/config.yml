@@ -32,7 +32,7 @@ jobs:
             rm -rf .git
             ls -lsa
             npm install
-            grunt
+            npm run build-jekyll
             cd docs/
             ls -lsa
             git config --global user.email "mgargano@gmail.com"
