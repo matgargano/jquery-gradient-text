@@ -24,6 +24,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            gem install sass
             sudo npm install -g grunt
             cd docs-src
             npm install
