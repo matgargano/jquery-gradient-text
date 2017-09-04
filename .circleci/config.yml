@@ -24,16 +24,16 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            sudo npm install -g grunt
             cd docs-src
+            npm install
+            grunt
             bundle install --jobs=4 --retry=3 --path vendor/bundle
             bundle exec jekyll build
             cd ../
             REPO="$(git config --get remote.origin.url)"
             rm -rf .git
             ls -lsa
-            npm install
-            sudo npm install -g grunt
-            grunt
             cd docs/
             ls -lsa
             git config --global user.email "mgargano@gmail.com"
