@@ -25,6 +25,7 @@ jobs:
           name: install dependencies
           command: |
             gem install sass
+            gem install jekyll
             sudo npm install -g grunt
             cd docs-src
             npm install
